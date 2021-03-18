@@ -58,6 +58,9 @@ The dataset can be found at Kaggle: https://www.kaggle.com/rtatman/188-million-u
 
 The data is saved as a sqlite file, which requires the "sqlite3" library to extract the data into a readable format for python. I extracted the data and saved it to a csv copy. 
 
+This file is saved as "fires.csv" and can be accessed via the following link. It is saved in Google Drive because it exceeds the 100MB limit on GitHub:
+https://drive.google.com/file/d/1P5aLUVZhujxFELZXH6UaHq2gEse0ijnu/view?usp=sharing
+
 ### b. [Cleaning](./code/II-Data-Cleaning.ipynb)
 
 While the dataset included fires across the U.S., the scope of this project was for California. As such, I filtered the dataset to California only which reduced the number or rows from 1.88 million to about 200,000. Additionally, I reduced the features to cover the time, location and identifying information for each fire. The other columns were not relevant to the model. I also checked and changed data types from objects to integers or date/time. The results were saved to a csv file for modeling. 
