@@ -8,12 +8,12 @@ This project was developed by Brian Mendes. Please see the individual notebooks 
 ### III. [Processing](#Processing)
 ### V. [Exploratory analysis](#Exploratory-analysis)
 ### VI. [Modeling](#Modeling)
-### IV. [Unsupervised Learning Experiments](#Unsupervised Learning Experiments)
+### IV. [Unsupervised Learning Experiments](#Unsupervised-Learning-Experiments)
 ### VII. [Conclusion](#Conclusion)
 
 ## Background
 
-The promise of the internet was to democratize information. News was no longer controlled by institutions. An individual could start a blog and broadcast a message to the world. With this leveling of the playing field came unforeseen consequences. Traditional news sources lost revenue streams, fired journalists and lost control of editorial review. Media became decentralized and moved online. As a result, “news” was driven by clickoncomics rather than journalistic principles. Content providers needed to attract attention vis-à-vis clicks and eyeballs by any means necessary. Terms such as “truthiness”, “infotainment” and “fake news” captured the spirit of this transformation of news in the information age. The dilemma we face in today’s world is distinguishing between facts and deception. We need help curating the content to cut through the noise and obtain reliable information. Due to the sheer volume of content produced each day, computers and machine learning could be tools that help us accomplish this goal. 
+In September 2020, San Francisco was shrouded in smoke and the blocked sun cast down an eerie orange glow on the city. Day felt like night. Schools cancelled class and companies sent employees home to escape the smoke. While the scene was dramatic, it was not an unfamiliar situation for Californians. The State’s top seven largest fires by acres burned have all occurred in the last 3 years. It’s clear that wildfires are getting bigger and worse.  Why is this happening and what causes these fires? According to Park Williams, a bioclimatologist at Columbia University’s Lamont-Doherty Earth Observatory, there are several factors that contribute to wildfires. Williams cites the changing climate (increased temperatures), natural causes (lightning strikes), man-made causes (downed powerline, campfires, and arson), fire suppression and mismanaged forests, and the Santa Ana Winds. California may have 20,000 fires in a single year. Luckily, these fires are documented and held in publicly available databases. This data can help investigators determine the causes of fires and with the right features predict future fires. This project seeks to develop a model that can help investigators predict the cause of a fire. 
 
 ## Datasets
 
@@ -22,6 +22,10 @@ https://www.kaggle.com/rtatman/188-million-us-wildfires
 
 ### Original data:
 The website has a SQlite file called "FPA_FOD_20170508.sqlite". The file is 758.92 MB and holds over 1.88 million rows of wildfires.  The website has a detailed data dictionary that includes the context, explanation of the columns, and sources. 
+
+Due to the size of this file it is saved in Google Drive. You can access it at the following link:
+https://drive.google.com/file/d/1ZQ9DBMk7bsfddV962fnyj0OE82ZBLwYZ/view?usp=sharing
+
 
 ### Data used in final models:
 
@@ -74,7 +78,7 @@ The goal of the exploratory data analysis was to get a general understanding of 
 
 
 
-## [Modeling](./code/V-Modeling.ipynb)
+## [Modeling](./code/IV-Modeling.ipynb)
 
 Libraries necessary for this section:
 ```
@@ -136,6 +140,32 @@ All model scores are listed below:
 
 ## Unsupervised Learning Experiments
 
+Libraries necessary for this section:
+```
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.style.use('ggplot')
+
+from sklearn import cluster
+from sklearn.cluster import KMeans
+
+from sklearn.metrics import silhouette_score
+
+from sklearn import metrics
+from scipy.spatial.distance import cdist
+
+from sklearn.metrics import pairwise_distances
+ 
+import time
+
+from sklearn.preprocessing import StandardScaler
+
+from sklearn.decomposition import PCA
+```
+
 The object of this clustering analysis is to see if any interesting relationships exist in the wildfire dataset. Unlike supervised learning, in unsupervised learning there is no target to predict but rather we look for cateogries from the structure in our data. This approach is often used in marketing research.
 
 My methodology includes the following steps:
@@ -146,15 +176,15 @@ My methodology includes the following steps:
 - Observe the results with a scatter plot
 - Evaluate the result with a cluster report
 
-### a. [Clustering A](./code/VI-Unsupervised-Learning-Clustering-A.ipynb)
+### a. [Clustering A](./code/V-Unsupervised-Learning-Clustering-A.ipynb)
 
 This notebook has the purpose to run a model with 2 PCA features and 6 K clusters.
 
-### b. [Clustering B](./code/VI-Unsupervised-Learning-Clustering-B.ipynb)
+### b. [Clustering B](./code/V-Unsupervised-Learning-Clustering-B.ipynb)
 
 This notebook has the purpose to run a model without PCA and instead use all the scaled features.
 
-### c. [Clustering C](./code/VI-Unsupervised-Learning-Clustering-C.ipynb)
+### c. [Clustering C](./code/V-Unsupervised-Learning-Clustering-C.ipynb)
 
 This notebook has the purpose of trying three PCA features instead of two and comparing all three models.
 
@@ -188,7 +218,7 @@ Like Cluster 1, Cluster 3 is also primarily defined by location but also adds nu
 
 ## Conclusion
 
-In the end, we were able to create a highly accurate classification model to differentiate between real and fake news. We are skeptical that we'd get similar results when applied to news stories from outside of this Kaggle dataset but believe we found some significant patterns nonetheless. This bodes well for social media platforms where news articles are shared prolifically; with more time and subject matter expertise, we believe machine learning can be an incredible tool in the battle against misinformation. 
+The best model was the KNN model due to its cross validation score and more balanced predictions across the cause categories. The unsupervised learning brought an interesting perspective to the dataset but did not conclusively create meaningful categories for investigators. Further analysis should incorporate weather data, such as humidity, temperature and wind speed. More recent fire data could also help, especially since the state’s largest fires occurred in 2020. Incorporating forest conditions would also add values information to models as the current data does not account for forest management. A neural network would also be an interesting model for this problem.  
 
 
 
